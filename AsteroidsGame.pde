@@ -1,5 +1,6 @@
 
 Star[] sky = new Star[100];
+ArrayList<Asteroid> gg = new ArrayList<Asteroid>();
 Spaceship mike = new Spaceship();
 public void setup() 
 {
@@ -7,6 +8,9 @@ public void setup()
   background(0);
   for (int i=0; i<sky.length; i++) {
     sky[i]=new Star();
+  }
+  for (int i=0; i<20; i++) {
+    gg.add(new Asteroid());
   }
 }
 public void draw() 
@@ -17,6 +21,14 @@ public void draw()
   }
   mike.show();
   mike.move();
+  for (int i=0; i<gg.size(); i++) {
+    gg.get(i).show();
+    gg.get(i).move();
+    if(dist((float)mike.getX(),(float)mike.getY(),gg.get(i).getX(),gg.get(i).getY())<20){
+    gg.remove(i);
+    i--;
+    }
+  }
 }
 public void keyPressed() {
   if (keyCode == UP)
